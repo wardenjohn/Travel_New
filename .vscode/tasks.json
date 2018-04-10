@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "g++",
+            "args": [
+                "main.cpp",
+                "add.cpp",
+                "sub.cpp",
+                "-o",
+                "main.exe"
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "build-debug",
+            "command": "g++",
+            "args": [
+                "-g",
+                "main.cpp",
+                "add.cpp",
+                "sub.cpp",
+                "-o",
+                "debug.exe"
+            ],
+            "type": "shell"
+        }
+    ]
+}
