@@ -39,35 +39,60 @@ export default class introduce extends Component {
             <ScrollView style={styles.container}>
                 <View>
                     <View style={styles.common}>
-                        <Text style={styles.title}>{params.data.name}</Text>
-                         
+                        <Text style={styles.head}>{params.data.name}</Text>
                     </View>
-                    <View>
-                        <Text style={styles.title}>开放时间</Text>
-                        <Text style={styles.text}>{params.data.open_time}</Text>
-                        <Text style={styles.title}>介绍</Text>
-                        <Text style={styles.text}>{params.data.introduce}</Text>
-                        <Text style={styles.title}>教育活动</Text>
-                        <Text style={styles.text}>{params.data.edu_activity}</Text>
-                        <Text style={styles.title}>藏品</Text>
-                        <Text style={styles.text}>{params.data.collection}</Text>
-                        <Text style={styles.title}>学术研究信息</Text>
-                        <Text style={styles.text}>{params.data.academic}</Text>
-                    </View>
-                    {/* <View style={{ marginTop: 10 }}>
-                        <Text style={styles.title}>评论</Text>
-                        <Text style={styles.text}>用户:{global.username}</Text>
-                    </View> */}
-                    {/* {
-                        global.statement == false ?
-                            <View style={styles.common}>
-                                <Text>
-                                    登录查看评论
-								</Text>
+                        {/* <View style={{width:50,height:50}}>
+                            <Image source={{uri:params.data.img_url}}></Image>
+                        </View> */}
+                        <View style={styles.containerBox}>
+                            <View style={styles.Boxtitle}>
+                                <Text style={styles.title}>开放时间</Text>
                             </View>
-                            :
-                            <Comments />
-                    } */}
+                            <View style={styles.BoxText}>
+                                <Text style={styles.text}>{params.data.opentime}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.containerBox}>
+                            <View style={styles.Boxtitle}>
+                                <Text style={styles.title}>介绍</Text>
+                            </View>
+                            <View style={styles.BoxText}>
+                                <Text style={styles.text}>{params.data.remark}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.containerBox}>
+                            <View style={styles.Boxtitle}>
+                                <Text style={styles.title}>区域</Text>
+                            </View>
+                            <View style={styles.BoxText}>
+                                <Text style={styles.text}>{params.data.area}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.containerBox}>
+                            <View style={styles.Boxtitle}>
+                                <Text style={styles.title}>地址</Text>
+                            </View>
+                            <View style={styles.BoxText}>
+                                <Text style={styles.text}>{params.data.address}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.containerBox}>
+                            <View style={styles.Boxtitle}>
+                                <Text style={styles.title}>交通</Text>
+                            </View>
+                            <View style={styles.BoxText}>
+                                <Text style={styles.text}>{params.data.transfer}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.containerBox}>
+                            <View style={styles.Boxtitle}>
+                                <Text style={styles.title}>Tips</Text>
+                            </View>
+                            <View style={styles.BoxText}>
+                                <Text style={styles.text}>{params.data.tips}</Text>
+                            </View>
+                        </View>
+                        
                     <View style={{ height: 55 }}>
                     </View>
                 </View>
@@ -80,21 +105,47 @@ var styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "white"
     },
+    containerBox:{
+        borderWidth:1,
+        width:ScreenWidth,
+        alignItems:"center",
+        alignSelf:"center",
+        height:'auto',
+    },
+    Boxtitle:{
+        backgroundColor:'rgba(222,222,222,0.8)',
+        width:ScreenWidth,
+        height:'auto',
+    },
+    BoxText:{
+        backgroundColor:'rgba(255,255,255,0.8)',
+        width:ScreenWidth,
+        height:'auto',
+    },
     common: {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
+        backgroundColor:'rgba(210,216,222,0.8)',
+        height:ScreenHeight/12,
     },
     title: {
-        fontSize: 16,
+        fontSize: 20,
         marginTop: 10,
         marginLeft: 10,
         marginBottom: 10,
         fontWeight: "bold"
     },
     text: {
-        marginLeft: 10,
+        marginLeft: 20,
         marginRight: 10,
-        color: "#000D22"
+        color: "#000D22",
+        fontSize:15,
     },
+    head:{
+        fontSize:25,
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"row",
+    }
 });

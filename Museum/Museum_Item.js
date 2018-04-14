@@ -31,12 +31,9 @@ export default class BookItem extends Component {
         var book = this.props.book;
         return (
             <TouchableOpacity style={styles.item} {...this.props}>
-                {/* <View style={styles.imageContainer}>
-                    <Image style={styles.image} source={{ uri: book.img_url }} />
-                </View> */}
                 <ImageBackground
                     style={styles.item}
-                    source={{ uri: this.state.image[book.id%this.state.image.length]}}
+                    source={{ uri: book.img_url}}
                 >   
                     <View style={[styles.textContainer,styles.common]}>
                         <Text 

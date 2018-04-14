@@ -26,7 +26,7 @@ class Detail extends Component {
             rowHasChanged: (oldRow, newRow) => oldRow !== newRow
         });
         this.state = {
-            //bookData: null,
+            bookData: null,
             scenicID:null,
             name:global.username,
         };
@@ -34,44 +34,48 @@ class Detail extends Component {
     getData() {
         var that = this;
         const { params } = this.props.navigation.state;
-        // alert(params.bookID)
-        //var url = "http://39.106.168.133:8080/api/museum/" + params.bookID;
-        var url = global.getfetch + `getscenic/id${params.scenicID}/`;
-        Util.getRequest(url, function (data) {
-            that.setState({
-                bookData: data
-            })
-        }, function (error) {
-            alert(error);
+        var url = global.getfetch.url + `getscenic/id${params.scenicID}/`;
+        let ops={
+            method:"get",
+        }
+        fetch(url,ops)
+        .then((response)=>{
+            return response.json()
+        })
+        .then((responseData) =>{
+            this.setState({bookData:responseData})
+            //alert(this.state.bookData[0].opentime)
+        })
+        .catch((error)=>{
+            alert(error)
         })
     }
     _back() {
         this.props.navigation.goBack();
     }
     _introduction(){
-        // alert("相关信息");
         this.props.navigation.navigate('message', {
-            data: this.state.bookData,
+            data: this.state.bookData[0],
         });
     }
     _gets(){
-        alert("展览");
+        //alert("展览");
         this.props.navigation.navigate('exhibition', {
-            data: this.state.bookData,
+            data: this.state.bookData[0],
         });
     }
     _news(){
-        alert("新闻");
         this.props.navigation.navigate('news', {
-            data: this.state.bookData,
+            data: this.state.bookData[0],
         });
     }
     _user(){
         // if(global.statement == false)
         //     alert("请登录!")
         // else{
+            //alert(this.state.bookData[0].id)
             this.props.navigation.navigate('comment', {
-                data: this.state.bookData,
+                data: this.state.bookData[0],
             });
         // }
     }
@@ -133,7 +137,7 @@ class Detail extends Component {
                                         </ImageBackground>  
                                     </TouchableOpacity>
                                 </View>
-                                <View style={[styles.block, {  }]}>
+                                {/* <View style={[styles.block, {  }]}>
                                     <TouchableOpacity
                                         onPress={() => this._news()}
                                     >
@@ -148,7 +152,7 @@ class Detail extends Component {
                                             </View>
                                         </ImageBackground>
                                     </TouchableOpacity>
-                                </View>
+                                </View> */}
                                 <View style={[styles.block,{  }]}>
                                     <TouchableOpacity
                                         onPress={() => this._user()}
@@ -184,7 +188,7 @@ var styles = StyleSheet.create({
     },
     block:{
         width: ScreenWidth, 
-        height: ScreenHeight*5/24,
+        height: ScreenHeight*5/12,
     },
     common: {
         justifyContent: "center",

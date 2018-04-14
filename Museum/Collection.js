@@ -38,17 +38,12 @@ export default class collect extends Component {
         return (
             <ScrollView style={styles.container}>
                 <View>
-                    <View style={styles.common}>
-                        <Text style={styles.title}>{params.data.name}</Text>
-
+                    <View style={styles.titleback}>
+                        <Text style={styles.titlescenic}>{params.data.name}</Text>
                     </View>
                     <View>
-                        <Text style={styles.title}>教育活动</Text>
-                        <Text style={styles.text}>{params.data.edu_activity}</Text>
-                        <Text style={styles.title}>藏品</Text>
-                        <Text style={styles.text}>{params.data.collection}</Text>
-                        <Text style={styles.title}>学术研究信息</Text>
-                        <Text style={styles.text}>{params.data.academic}</Text>
+                        <Text style={styles.title}>活动消息</Text>
+                        <Text style={styles.text}>暂无</Text>
                     </View>
                     {/* <View style={{ marginTop: 10 }}>
                         <Text style={styles.title}>评论</Text>
@@ -80,6 +75,19 @@ var styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
+    },
+    titleback:{
+        //backgroundColor:'blue',
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+    },
+    titlescenic:{
+        fontSize: 28,
+        marginTop: 10,
+        marginLeft: 10,
+        marginBottom: 10,
+        fontWeight: "bold"
     },
     title: {
         fontSize: 16,

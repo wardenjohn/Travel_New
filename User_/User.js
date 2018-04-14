@@ -25,6 +25,8 @@ import Login from './login';
 import MyComment from './comment';
 import MyLike from './like';
 import Regiter from './register';
+import Write from './writeDiary';
+import Diary from './diary';
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
 var ScreenHeight = Dimensions.get('window').height;
@@ -34,7 +36,8 @@ class User extends Component { //<Props>
 	
 	  this.state = {
 	  		statement:false,
-	  		name:"",
+			  name:"",
+			  list:null,
 	  };
 	  
 	}
@@ -43,18 +46,46 @@ class User extends Component { //<Props>
 		global.statement = false;
 		this.setState({statement:false})
 	}
+
+	getData(){
+		let url = global.getfetch.url + `mark/userid${global.id}`;
+		let ops={
+		  method:"get",
+		}
+		fetch(url,ops)
+		.then((response)=>{
+		  return response.json()
+		})
+		.then((responseData)=>{
+		  //alert(responseData[0].scenicname);
+		  this.setState({list:responseData});
+		})
+		.catch((error)=>{
+		  alert(error);
+		})
+	}
+
 	_coments(){
+		this.getData()
 		if(this.state.statement == false)
-			this.props.navigation.navigate('Profile');
+			this.props.navigation.navigate('Profile',{callBack:(data)=>{this.setState({name:data,statement:true})}});
 		else
-			this.props.navigation.navigate('Comment',{name:this.state.name});
+			this.props.navigation.navigate('Comment',{name:this.state.name,list:this.state.list});
 	}
-	_likes(){
+	_write(){
 		if(this.state.statement == false)
-			this.props.navigation.navigate('Profile');
+			this.props.navigation.navigate('Profile',{callBack:(data)=>{this.setState({name:data,statement:true})}});
 		else
-			this.props.navigation.navigate('MyLike',{name:this.state.name});
+			this.props.navigation.navigate('WriteDiary',{name:this.state.name});
 	}
+
+	_checkDiary(){
+		if(this.state.statement == false)
+			this.props.navigation.navigate('Profile',{callBack:(data)=>{this.setState({name:data,statement:true})}});
+		else
+			this.props.navigation.navigate('Diary',{name:this.state.name})
+	}
+
 	_exit(){
 		global.statement = false;
 		global.username="";
@@ -62,7 +93,6 @@ class User extends Component { //<Props>
 		this.componentWillMount()
 	}
 	_s(){
-		// this.props.op.bind('',false)
 		if (this.state.statement == false)
 			alert('请先登录');
 		else
@@ -167,7 +197,7 @@ class User extends Component { //<Props>
 								<View style={{ left: 0 }}>
 									<TouchableOpacity
 										style={[styles.func, { paddingLeft: 0, paddingRight: 0 }]}
-										onPress={() => this._coments()}
+										onPress={() => this._write()}
 									>
 										<View style={{ width: ScreenWidth / 2, flexDirection: "row", }}>
 											<View style={{ marginLeft: 20 }}>
@@ -178,7 +208,7 @@ class User extends Component { //<Props>
 												</Image>
 											</View>
 											<Text style={{ fontSize: 20, marginLeft: 20 }}>
-												喜欢
+												写日记
 										</Text>
 										</View>
 										<View style={{ width: ScreenWidth / 3 }}></View>
@@ -197,7 +227,7 @@ class User extends Component { //<Props>
 								<View style={{ left: 0 }}>
 									<TouchableOpacity
 										style={[styles.func, { paddingLeft: 0, paddingRight: 0 }]}
-										onPress={() => this._coments()}
+										onPress={() => this._checkDiary()}
 									>
 										<View style={{ width: ScreenWidth / 2, flexDirection: "row", }}>
 											<View style={{ marginLeft: 20 }}>
@@ -441,6 +471,20 @@ const ModalStack = StackNavigator({
 		navigationOptions: {
 			headerTitle:'',
 			header:null
+		}
+	},
+	WriteDiary:{
+		screen:Write,
+		navigationOptions:{
+			headerTitle:'写日记',
+			header:null,
+		}
+	},
+	Diary:{
+		screen:Diary,
+		navigationOptions:{
+			headerTitle:'看日记',
+			header:null,
 		}
 	}
 });

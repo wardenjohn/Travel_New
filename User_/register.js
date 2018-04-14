@@ -60,11 +60,8 @@ export default class Login extends Component {
         alert("俩次密码输入不一致!!!");
       else{
             this._getData();
-            // if(this.state.data.valid == 1)
-            // {
-            //     state.params.callBack() //回调传值
-            //     goBack() //点击POP上一个页面得方法
-            // }
+            state.params.callBack() //回调传值 
+            this.props.navigation.goBack();
       }
         
     }

@@ -36,23 +36,26 @@ export default class Show extends Component {
         for(var i = 0;i<len;i++){
             Comments.push(
                 <View style={[styles.container,{paddingLeft :15,paddingRight:15 ,}]} key={"i" + i}>
-                    <View style={{height:30,flexDirection: 'row',}}>
+                    <View style={{height:'auto',flexDirection: 'row',}}>
                         <Image
                             source={require('./../Image/head.png')}
                         />
-                        <Text>
-                            {this.state.data[i].loginname}
+                        <Text style={{fontSize:25}}>
+                            【{this.state.data[i].loginname}】
                         </Text>
                     </View>
-                    <View style={{ height: 60}}>
-                        <Text>
-                            {this.state.data[i].content}
+                    <View style={{height:'auto'}}>
+                        <Text style={{fontSize:20}}>评论:</Text>
+                        </View>
+                    <View style={{ height:'auto',paddingBottom:15}}>
+                        <Text style={styles.content}>
+                            {this.state.data[i].markContent}
                         </Text>
                     </View>
                     <View style={{ height: 50,flexDirection: 'row', width:ScreenWidth}}>
                         <View style={{ width: ScreenWidth/2}}>
                             <Text>
-                                {this.state.data[i].time}
+                                评论日期:{this.state.data[i].time}
                             </Text>
                         </View>
                         <View style={{ width: ScreenWidth / 2 ,flexDirection: 'row',}}>
@@ -65,22 +68,6 @@ export default class Show extends Component {
                                 >
                                 </ImageBackground>
                             </TouchableOpacity>
-                            <Text>
-                                178
-                            </Text>
-                            <TouchableOpacity
-                                style={{marginLeft: 15,}}
-                                // onPress={() => this._introduction()}
-                            >
-                                <ImageBackground
-                                    style={[styles.common, { width: 20, height: 20 }]}
-                                    source={require('./../Image/other_com.png')}
-                                >
-                                </ImageBackground>
-                            </TouchableOpacity>
-                            <Text>
-                                8
-                            </Text>
                         </View>
                     </View>
                 </View>
@@ -98,11 +85,10 @@ export default class Show extends Component {
     _getdata() {
         let s = this.state.id;
         let formData = new FormData();
-        // formData.append("user_id", 7);
-        let url = "http://39.106.168.133:8080/api/comments/museum/" +s; 
+        let url = global.getfetch.url + `mark/scenicid${this.state.id}`; 
         fetch(url, {
-            method: 'GET',
-        }
+            method: "get",
+            }
         )
             .then((response) => {
                 if (response.ok) {
@@ -111,7 +97,6 @@ export default class Show extends Component {
             })
             .then((json) => {
                 this.setState({ data: json });
-                // alert(json[0].loginname)
             })
             .catch((error) => {
                 console.error(error);
@@ -126,11 +111,16 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "white",
-        height:150,
+        height:'auto',
     },
     common: {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
     },
+    content:{
+      paddingBottom:5,
+      fontSize:15,
+    },
 });
+

@@ -14,10 +14,11 @@ import {
     ScrollView,
     TextInput
 } from 'react-native';
-import RNRestart from 'react-native-restart';
+//import RNRestart from 'react-native-restart';
 import StarScore from './star.js';
 import { StackNavigator } from 'react-navigation';
 import Icon from './../User_/Icon_Back.js'
+import './../globalcontent.js'
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
 var ScreenHeight = Dimensions.get('window').height;
@@ -61,9 +62,9 @@ export default class Comment extends Component {
         });
     }
     _submit(){
-        alert("成功提交")
+        //alert("成功提交")
         this._getdata();
-        RNRestart.Restart();
+        //RNRestart.Restart();
     }
     _clear(){
         alert("清空")
@@ -116,7 +117,7 @@ export default class Comment extends Component {
                 <View style={[{width:ScreenWidth,flexDirection: 'row',}]}>
                     <View style={{width:ScreenWidth/3,flexDirection: 'row-reverse',}}>
                         <Text style={{fontSize: 20,}}>
-                            展览评分:
+                            环境评分:
                         </Text>
                     </View>
                     <View style={{width:ScreenWidth*2/3}}>
@@ -144,7 +145,7 @@ export default class Comment extends Component {
                 <View style={[{width:ScreenWidth,flexDirection: 'row',}]}>
                     <View style={{width:ScreenWidth/3,flexDirection: 'row-reverse',}}>
                         <Text style={{fontSize: 20,}}>
-                            环境评分:
+                            游玩评分:
                         </Text>
                     </View>
                     <View style={{width:ScreenWidth*2/3}}>
@@ -155,18 +156,14 @@ export default class Comment extends Component {
                     </View>
                 </View>
                 <View style={{width:ScreenWidth,backgroundColor:"black",height:0.5,marginTop: 25,}}></View>
-                    {/* <Text>
-                        16{this.state.texts}
-                    </Text> */}
                 <View style={[styles.input,{width:ScreenWidth}]}>
                     <TextInput
-                        // style={styles.input}
                         underlineColorAndroid='transparent' 
-                        onChangeText={(text) => {
-                                this.setState({
-                                    texts: text
-                                })
-                            }}
+                        onChangeText={(text) => {this.setState({texts: text})}}
+                        multiline={true}
+                        placeholder='请在此输入评论'
+                        textAlignVertical='top'
+                        style={{width:ScreenWidth}}
                     />
                 </View>
                 <View style={{flexDirection: 'row-reverse',}}>
@@ -192,30 +189,41 @@ export default class Comment extends Component {
     _getdata() {
         const { params } = this.props.navigation.state;
         let formData = new FormData();
-        formData.append("coption", 1);
-        formData.append("museum_id", params.id_museum);
-        formData.append("content", this.state.texts);
-        formData.append("user_id", global.id);
-        let url = "http://39.106.168.133:8080/api/comments" 
-        fetch(url, {
-            method: 'POST',
-            headers: {},
-            body: formData,
+        //formData.append("coption", 1);
+        if(!global.id){
+            alert("请先登录！");
         }
-        )
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
+        else{
+            //alert(params.id);
+            formData.append("userid", global.id);
+            formData.append("scenicid", params.id);
+            formData.append("scenicname",params.name_museum);
+            formData.append("loginname",global.username);
+            formData.append("markContent", this.state.texts);
+            formData.append("envirScore",this.state.Score0);
+            formData.append("serveScore",this.state.Score1);
+            formData.append("plauScore",this.state.Score2);
+            let url = global.getfetch.url + 'user/writebyUser/';
+            fetch(url, {
+                    method: 'POST',
+                    headers: {},
+                    body: formData,
                 }
-            })
-            .then((json) => {
-                this.setState({ data: json });
-                alert(json);
-
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+            )
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                })
+                .then((json) => {
+                    alert("提交成功！");
+                    this.setState({ data: json });
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+                this._back();
+        }
     }
 }
 var styles = StyleSheet.create({

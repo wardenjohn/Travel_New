@@ -31,7 +31,7 @@ var ScreenHeight = Dimensions.get('window').height;
 	  this.state = {
 	  		show:false,
 	  		dataSource:ds,
-	  		keywords:"博物馆",
+	  		keywords:"旅游",
 	  };
 	}
 	getData(){
@@ -58,11 +58,27 @@ var ScreenHeight = Dimensions.get('window').height;
 		}) 
 	}
 	_search(){
-
+		let url = global.getfetch.url + `getnews/keyword=${this.state.keywords}`;
+		var that=this;
+		let ops={
+			method:"get",
+		}
+		fetch(url,ops)
+		.then((response)=>{
+			return response.json();
+		})
+		.then((responseData)=>{
+			var ds=new ListView.DataSource({
+				rowHasChanged:(oldRow,newRow)=>oldRow!==newRow
+			})
+			this.setState({dataSource:ds.cloneWithRows(responseData)})
+		})
+		.catch((error)=>{
+			alert(error);
+		})
 	}
 	render(){
 		return(
-		<ScrollView>
 			<View style={{flexDirection:"row",}}>
 				<ImageBackground
 					style={{width:ScreenWidth,height:ScreenHeight}}
@@ -73,8 +89,6 @@ var ScreenHeight = Dimensions.get('window').height;
 							<View style={{alignItems: 'center',borderWidth:1,borderRadius:10,},{margin:10,flexDirection:"row",width:ScreenWidth/1.2,}}>
 								<TouchableOpacity
 									onPress={()=>this._search()}
-									onChangeText={(text)=>this.setState({keywords:text})}	
-									// dataDetectorTypes={dall}
 								>
 									<Image
 										source={require('./../Image/search.png')} 
@@ -84,7 +98,7 @@ var ScreenHeight = Dimensions.get('window').height;
 								<SearchBar
 									placeholder="输入新闻信息"
 									onPress={()=>this._searchPress(this.state.keywords)}	
-									// onChangeText={(text) => this._changeText(text)}	
+									onChangeText={(text) => this.setState({keywords:text})}	
 								/>
 							</View>
 						</View>
@@ -99,7 +113,7 @@ var ScreenHeight = Dimensions.get('window').height;
 									(book)=><News_Item 
 												book={book}  
 												onPress={()=>{
-					 								this.props.navigation.navigate('Profile',{bookID:book.title})
+					 								this.props.navigation.navigate('Profile',{newsID:book.id})
 					 							}
 					 						}/>
 								}
@@ -110,7 +124,6 @@ var ScreenHeight = Dimensions.get('window').height;
 					</View>
 				</ImageBackground>
 			</View>
-		</ScrollView>
 		);
 	}
 	_renderSeperator(sectionID:number,rowID:number){

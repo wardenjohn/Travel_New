@@ -13,6 +13,7 @@ import {
 	ScrollView,
 	ListView,
 	Picker,
+	FlatList,
 } from 'react-native';
 import './../globalcontent.js'
 import { StackNavigator } from 'react-navigation';
@@ -39,7 +40,7 @@ class Home_list extends Component {
 			dataSource: ds,
 			keywords: "故宫博物院",
 			statement:global.statement,
-			place:'北京',
+			place:'天津',
 		};
 		
 	}
@@ -74,11 +75,13 @@ class Home_list extends Component {
 	}
 
 	_update = (place) =>{
+		var that=this;
 		let opts={
 			method:"GET",
 		}
 		let url = global.getfetch.url + "getscenic/";
-		url += `place${this.state.place}`
+		url += `place${place}/`
+		//alert(url)
 		Util.getRequest(url, function (data) {
 			if (!data || data.length == 0) {
 				return alert("未查询到相关信息")
@@ -89,16 +92,17 @@ class Home_list extends Component {
 			})
 			that.setState({
 				show: true,
-				dataSource: ds.cloneWithRows(data)
+				dataSource: ds.cloneWithRows(data),
+				place:place
 			})
 		}, function (error) {
 			alert(error);
 		})
 	}
 
+
 	render() {
 		return (
-			<ScrollView>
 				<View style={{ flexDirection: "row", }}>
 					<ImageBackground
 						style={{ width: ScreenWidth, height: ScreenHeight }}
@@ -145,12 +149,16 @@ class Home_list extends Component {
 										}
 										renderSeperator={this._renderSeperator}
 									/>
+									// <FlatList
+									// 	data={this.state.dataSource}
+									// 	renderItem={this._renderItem.bind(this)}
+									// 	keyExtractor = {item => item.id}
+									// />
 									: Util.loading
 							}
 						</View>
 					</ImageBackground> 
 				</View>
-			</ScrollView >
 		);
 	}
 	_renderSeperator(sectionID: number, rowID: number) {
