@@ -1,0 +1,78 @@
+#coding:utf-8
+from django.shortcuts import render
+import json
+import datetime
+from django.shortcuts import redirect
+from django.shortcuts import render,render_to_response
+from django.http import HttpResponse
+from django.forms import ModelForm
+from django.contrib import auth
+from django.contrib.auth.models import User
+
+from mark.models import marktable
+from django.views.decorators.csrf import csrf_exempt
+from django.core.serializers import serialize,deserialize
+from django.db.models.query import QuerySet
+from dss.Serializer import serializer
+# Create your views here.
+
+def markbyUser(request,uid):
+	if request.method == 'GET':
+		list=marktable.objects.filter(userid=uid)
+		data=serializer(list,output_type='json')
+		return HttpResponse(data,content_type="application/json")
+
+def markbyScenic(request,sid):
+	if request.method == 'GET':
+		list=marktable.objects.filter(scenicid=sid)
+		data=serializer(list,output_type='json')
+		return HttpResponse(data,content_type="application/json")
+
+@csrf_exempt
+def writebyUser(request):
+	if request.method == 'POST':
+		now=datetime.datetime.now()
+		uptime=str(now)
+		uptime=uptime[0:16]
+		uid=request.POST['userid']
+		scenid=request.POST['scenicid']
+		name=request.POST['scenicname']
+		logname=request.POST['loginname']
+		markcontent=request.POST['markContent']
+		servescore=request.POST['serveScore']
+		encsroce=request.POST['envirScore']
+		plays=request.POST['plauScore']
+		avgs=0
+		try:
+			marktable.objects.create(userid=uid,scenicid=scenid,scenicname=name,
+loginname=logname,time=uptime,markContent=markcontent,serveScore=servescore,envirScore=encsroce,plauScore=plays,avgScore=avgs)
+		except Exception as error:
+			print(scenid)
+			print(error)		
+		data='Succeeded!'
+		return HttpResponse(json.dumps(data))
+
+def score(request,sid):
+	if request.method == 'GET':
+		list=marktable.objects.filter(scenicid=sid)
+		avgserver=0
+		avgenvir=0
+		avgplay=0
+		total=0.0
+		print(len(list))
+		if list:	
+			for one in list:
+				avgserver+=one.serveScore
+				avgenvir+=one.envirScore
+				avgplay+=one.plauScore
+		if len(list)!=0:
+			total = avgserver + avgenvir + avgplay
+			total = total*1.0/3		
+			total = float("%.1f" % total)
+			avgserver=avgserver/len(list)
+			avgenvir=avgenvir/len(list)
+			avgplay=avgplay/len(list)
+		print(total)
+		res={'avgtotal':total,'avgserver':avgserver,'avgenvir':avgenvir,'avgplay':avgplay,'people':len(list)}
+		data=serializer(res,output_type='json')	
+		return HttpResponse(data,content_type="application/json")

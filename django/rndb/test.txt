@@ -1,0 +1,3 @@
+baidu https://www.baidu.com beijing
+souhu http://www.sohu.com tianjing
+buct http://www.buct.edu.cn beijing

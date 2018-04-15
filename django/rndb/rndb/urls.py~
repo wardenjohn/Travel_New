@@ -1,0 +1,38 @@
+from django.conf.urls import patterns, include, url
+
+from django.contrib import admin
+admin.autodiscover()
+
+from REACT import views
+from newsdb import views
+from userdb import views
+from turenews import views
+from mark import views
+from diary import views
+#urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'rndb.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+
+   # url(r'^admin/', include(admin.site.urls)),
+#)
+
+urlpatterns=patterns('',
+			url(r'^admin/', include(admin.site.urls)),
+			url(r'', include(admin.site.urls)),
+			url(r'^getofficeweb/place(.+)/$','REACT.views.getofficeweb'),#it need to mate the name in the regular expression
+			url(r'^getscenic/place(.+)/$','newsdb.views.getscenic'),
+			url(r'^user/getuser/$','userdb.views.getuser'),
+			url(r'^getscenic/id(.+)/$','newsdb.views.getbyID'),
+			url(r'^user/reg/$','userdb.views.reg'),
+			url(r'^news/getnews/$','turenews.views.getnews'),
+			url(r'^news/id(.+)/$','turenews.views.getnewsbyID'),
+			url(r'^mark/userid(.+)/$','mark.views.markbyUser'),
+			url(r'^mark/scenicid(.+)/$','mark.views.markbyScenic'),
+			url(r'^user/infor/id(.+)$','userdb.views.infomation'),
+			url(r'^user/writebyUser/$','mark.views.writebyUser'),
+			url(r'^getscore/id(.+)/$','mark.views.score'),
+			url(r'^getnews/keyword=(.+)/$','turenews.views.getnewsByKey'),
+			url(r'^push/pushDiary/$','diary.views.pushDiary'),
+			url(r'^get/uid=(.+)/$','diary.views.getDiary')
+)
