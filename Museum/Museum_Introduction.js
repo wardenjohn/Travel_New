@@ -106,7 +106,7 @@ var styles = StyleSheet.create({
         backgroundColor: "white"
     },
     containerBox:{
-        borderWidth:1,
+        // borderWidth:1,
         width:ScreenWidth,
         alignItems:"center",
         alignSelf:"center",

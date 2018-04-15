@@ -19,7 +19,7 @@ export default class App extends Component {
   
     this.state = {
         Height:60,
-        tab:"博物馆",
+        tab:"景点",
         value:"old",
         user:"",
         statement:"",
@@ -30,7 +30,7 @@ export default class App extends Component {
     _this = this;
   }
   _one(){
-      this.setState({tab:'博物馆'})
+      this.setState({tab:'景点'})
   }
   _onPress(data){
         var height = _this.state.Height;
@@ -62,8 +62,8 @@ export default class App extends Component {
             }} 
           >  
           <TabNavigator.Item  
-              title="博物馆"  
-              selected={this.state.tab==='博物馆'}  
+              title="景点"  
+              selected={this.state.tab==='景点'}  
               onPress={()=>this._one()}
               renderIcon={()=><Image  
                     style={{width:60,height:this.state.Height/2}}  

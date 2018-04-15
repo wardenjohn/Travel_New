@@ -27,6 +27,7 @@ export default class Diary extends Component {
       this.state = {
 		  	name:null,
         list:null,
+        
       };
     }
 
@@ -46,21 +47,39 @@ export default class Diary extends Component {
       })
       .catch((error)=>{
         alert(error);
-      })
+      }) 
     }
-
+    _getContext(value){
+      this.props.navigation.navigate('DiaryDetail',{
+          data:this.state.list[value],
+          g:true
+      });
+    }
 
     _keyExtractor = (item, index) => item.id;
 
     _renderItem = (item) => {
       return(
         <View style={styles.rowBox}>
-          <View style={styles.titleBox}>
-            <Text>标题:{this.state.list[item.index].title}</Text>
-          </View>
-          <View style={styles.contentBox}>
-            <Text>正文:{this.state.list[item.index].content}</Text>
-          </View>
+          <TouchableOpacity
+            onPress={()=>this._getContext(item.index)}
+          >
+            <View style={styles.titleBox}>
+              <Text>标题:{this.state.list[item.index].title}</Text>
+            </View>
+            <View style={styles.contentBox}>
+            {
+              this.state.list[item.index].content.length>30? 
+              <Text>
+                正文:{this.state.list[item.index].content.substring(0,30)}...
+              </Text>
+              :
+              <Text>
+                正文:{this.state.list[item.index].content}    
+              </Text>
+            }
+            </View>
+          </TouchableOpacity>
         </View>
       );
     }
@@ -90,12 +109,18 @@ const styles = StyleSheet.create({
         width:BoxWidth,
         marginTop:10,
         alignSelf:'center',
-    },
-    titleBox:{
-        backgroundColor:'white',
+        borderColor:'black',
         borderWidth:1,
         borderRadius:5,
-        width:BoxWidth,
+    },
+    titleBox:{
+        backgroundColor:'rgba(239,239,244,1)',
+        alignSelf:'center',
+        alignItems:'center',
+        fontSize:20,
+    },
+    title:{
+
     },
     contentBox:{
         borderColor:'black',
@@ -104,5 +129,6 @@ const styles = StyleSheet.create({
         borderRadius:5,
         borderWidth:1,
         backgroundColor:'white',
+        fontSize:15,
     },
 });

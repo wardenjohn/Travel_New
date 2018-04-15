@@ -13,7 +13,8 @@ import {
 	ImageBackground,
     LinearGradient,
     TextInput,
-    ScrollView
+    ScrollView,
+    Button
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import './../globalcontent.js'
@@ -85,16 +86,24 @@ export default class Write extends Component {
                         placeholder='请在此编写你的日记'
                         textAlignVertical='top'
                         value={this.state.content}
-                        style={{width:ScreenWidth}}
+                        style={{backgroundColor:'white',width:ScreenWidth}}
                     />
-               
-                    <TouchableOpacity onPress={()=>this._push()}>
-                        <Text>confirm</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={()=>this._clear()}>
-                        <Text>clear</Text>
-                    </TouchableOpacity>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={styles.button}>
+                            <Button
+                                onPress={()=>this._push()}
+                                title="确定"
+                                color="#841584"
+                            />
+                        </View>
+                        <View style={styles.button}>
+                            <Button
+                                onPress={()=>this._clear()}
+                                title="清空"
+                                color="#841584"
+                            />
+                        </View>
+                    </View>
                 </View>
             </View>
         </ScrollView>
@@ -120,13 +129,21 @@ const styles = StyleSheet.create({
         borderRadius:5,
         borderColor:'rgba(216,214,216,1)',
         width:BoxWidth,
+        marginBottom:10,
     },
     contentBox:{
-        borderColor:'black',
-        width:BoxWidth,
+        marginTop:10,
+        borderColor:'white',
+        width:BoxWidth-10,
         height:'auto',
         borderRadius:5,
         borderWidth:1,
         backgroundColor:'white',
     },
+    button:{
+        alignSelf:'center',
+        alignItems:'center',
+        width:ScreenWidth/2,
+        borderRadius:5,
+    }
 });

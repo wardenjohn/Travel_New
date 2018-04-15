@@ -18,6 +18,7 @@ import Personal_set from './../Personal_page/Personal_set.js';
 import { StackNavigator } from 'react-navigation';
 const {Surface, Group, Shape} = ART;
 // import Fresh from './../refresh';
+import Diarydetail from './Detail'
 import Header from './Header';
 import Person from './person';
 import Icon from './Icon';
@@ -477,14 +478,19 @@ const ModalStack = StackNavigator({
 		screen:Write,
 		navigationOptions:{
 			headerTitle:'写日记',
-			header:null,
+			
 		}
 	},
 	Diary:{
 		screen:Diary,
 		navigationOptions:{
 			headerTitle:'看日记',
-			header:null,
+		}
+	},
+	DiaryDetail:{
+		screen:Diarydetail,
+		navigationOptions:{
+			headerTitle:'详细内容',
 		}
 	}
 });
