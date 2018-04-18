@@ -199,15 +199,20 @@ export default class Personal_sets extends Component {
                                     {this.state.sex}
                                 </Text>
                             </View>
-                            <TouchableOpacity
+                            <View style={{width:ScreenWidth/3}}>
+                            </View>
+                            <View style={[styles.reverse_comon ]}>
+                                <TouchableOpacity
                                     onPress={
                                         this.showAlertSelected.bind(this)
                                     }
+                                    style={[styles.reverse_comon,{height:ScreenHeight / 12}]}
                                 >
-                                    <View style={[styles.common, { marginLeft: ScreenWidth /2, width: ScreenWidth / 6 }]}>
-                                        <Icon />
-                                    </View>
-                            </TouchableOpacity>
+                                    
+                                    <Icon />
+                                    
+                                </TouchableOpacity>
+                            </View>
                         </View>
                  </View>
 
@@ -223,14 +228,16 @@ export default class Personal_sets extends Component {
                                     {this.state.city}
                                 </Text>
                             </View>
-                            <View style={styles.common}>
+                            <View style={{width:ScreenWidth/3}}>
+                            </View>
+                            <View style={styles.reverse_comon}>
                                 <Icon />
                             </View>
                         </View>
                         <View style={styles.common}>
                         <TextInput
                             defaultValue={this.state.introduce}
-                            underlineColorAndroid='transparent'
+                            // underlineColorAndroid='transparent'
                             onChangeText={(text)=>this.setState({city:text})}
                             style={{height: 40, borderColor: 'gray', borderWidth: 1,width:ScreenWidth}}
                         />
@@ -244,10 +251,17 @@ export default class Personal_sets extends Component {
 }
 const styles = StyleSheet.create({
     common:{
-        justifyContent: "center",
+        // justifyContent: "center",
         alignItems: "center",
         flexDirection:"row",
     },
+    reverse_comon:{
+        alignItems: "center",
+        justifyContent: "center",
+        // flexDirection:"row-reverse",
+        width:ScreenWidth/3,
+        // backgroundColor:"red"
+    },  
     Text_:{
         fontSize:20,
         color:"#26c85a",

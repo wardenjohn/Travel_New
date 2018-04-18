@@ -38,6 +38,11 @@ export default class Write extends Component {
     }
 
     _push(){
+        if(this.state.content==null||this.state.title==null)
+        {
+            alert("标题或者内容不能为空")
+            return ;
+        }
         let url = global.getfetch.url + 'push/pushDiary/';
         let formData = new FormData();  
         formData.append("userid",global.id);  

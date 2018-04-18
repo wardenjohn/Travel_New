@@ -65,16 +65,16 @@ export default class Diary extends Component {
             onPress={()=>this._getContext(item.index)}
           >
             <View style={styles.titleBox}>
-              <Text>标题:{this.state.list[item.index].title}</Text>
+              <Text style={{fontSize:20}}>标题:{this.state.list[item.index].title}</Text>
             </View>
             <View style={styles.contentBox}>
             {
               this.state.list[item.index].content.length>30? 
-              <Text>
+              <Text style={{fontSize:15,}}>
                 正文:{this.state.list[item.index].content.substring(0,30)}...
               </Text>
               :
-              <Text>
+              <Text style={{fontSize:15,}}>
                 正文:{this.state.list[item.index].content}    
               </Text>
             }
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         backgroundColor:'rgba(239,239,244,1)',
         alignSelf:'center',
         alignItems:'center',
-        fontSize:20,
+        // fontSize:20,
     },
     title:{
 
@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
         borderRadius:5,
         borderWidth:1,
         backgroundColor:'white',
-        fontSize:15,
+        // fontSize:15,
     },
 });
