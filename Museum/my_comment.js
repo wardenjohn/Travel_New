@@ -67,7 +67,10 @@ export default class Comment extends Component {
         //RNRestart.Restart();
     }
     _clear(){
-        alert("清空")
+        //alert("清空")
+        this.setState({
+            texts:"  ",
+        })
     }
     _back() {
         this.props.navigation.goBack();
@@ -115,44 +118,56 @@ export default class Comment extends Component {
                 </View>
 
                 <View style={[{width:ScreenWidth,flexDirection: 'row',}]}>
-                    <View style={{width:ScreenWidth/3,flexDirection: 'row-reverse',}}>
+                    <View style={{width:'auto',flexDirection: 'row',}}>
                         <Text style={{fontSize: 20,}}>
                             环境评分:
                         </Text>
-                    </View>
-                    <View style={{width:ScreenWidth*2/3}}>
                         <StarScore
                             selectIndex={this._selectIndex0.bind(this)}
                             value={0}
                         />
                     </View>
+                    {/* <View style={{width:ScreenWidth/2}}>
+                        <StarScore
+                            selectIndex={this._selectIndex0.bind(this)}
+                            value={0}
+                        />
+                    </View> */}
                 </View>
 
                 <View style={[{width:ScreenWidth,flexDirection: 'row',}]}>
-                    <View style={{width:ScreenWidth/3,flexDirection: 'row-reverse',}}>
+                    <View style={{width:'auto',flexDirection: 'row',}}>
                         <Text style={{fontSize: 20,}}>
                            服务评分:
                         </Text>
-                    </View>
-                    <View style={{width:ScreenWidth*2/3}}>
                         <StarScore
                             selectIndex={this._selectIndex1.bind(this)}
                             value={1}
                         />
                     </View>
+                    <View style={{width:ScreenWidth*2/3,flexDirection:'row',alignItems:'flex-start',alignSelf:'flex-start'}}>
+                        {/* <StarScore
+                            selectIndex={this._selectIndex1.bind(this)}
+                            value={1}
+                        /> */}
+                    </View>
                 </View>
 
                 <View style={[{width:ScreenWidth,flexDirection: 'row',}]}>
-                    <View style={{width:ScreenWidth/3,flexDirection: 'row-reverse',}}>
+                    <View style={{width:'auto',flexDirection: 'row',}}>
                         <Text style={{fontSize: 20,}}>
                             游玩评分:
                         </Text>
-                    </View>
-                    <View style={{width:ScreenWidth*2/3}}>
                         <StarScore
                             selectIndex={this._selectIndex2.bind(this)}
                             value={2}
                         />
+                    </View>
+                    <View style={{width:ScreenWidth*2/3}}>
+                        {/* <StarScore
+                            selectIndex={this._selectIndex2.bind(this)}
+                            value={2}
+                        /> */}
                     </View>
                 </View>
                 <View style={{width:ScreenWidth,backgroundColor:"black",height:0.5,marginTop: 25,}}></View>
@@ -160,6 +175,7 @@ export default class Comment extends Component {
                     <TextInput
                         underlineColorAndroid='transparent' 
                         onChangeText={(text) => {this.setState({texts: text})}}
+                        value={this.state.texts}
                         multiline={true}
                         placeholder='请在此输入评论'
                         textAlignVertical='top'

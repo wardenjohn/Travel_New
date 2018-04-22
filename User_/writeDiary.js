@@ -65,6 +65,8 @@ export default class Write extends Component {
         .catch((error) => {  
             console.error(error);  
         }); 
+        alert("提交成功！")
+        
     }
 
     render(){

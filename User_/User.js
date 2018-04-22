@@ -288,7 +288,7 @@ class User extends Component { //<Props>
 								<View style={{ left: 0 }}>
 									<TouchableOpacity
 										style={[styles.func, { paddingLeft: 0, paddingRight: 0 }]}
-										onPress={() => this._coments()}
+										onPress={() => alert("张永德/赵博宇/李盛兰 Copyright © 2018 BUCT Computer Science and Engineering")}
 									>
 										<View style={{ width: ScreenWidth / 2, flexDirection: "row", }}>
 											<View style={{ marginLeft: 20 }}>
@@ -299,7 +299,7 @@ class User extends Component { //<Props>
 												</Image>
 											</View>
 											<Text style={{ fontSize: 20, marginLeft: 20 }}>
-												社圈
+												版权声明
 										</Text>
 										</View>
 										<View style={{ width: ScreenWidth / 3 }}></View>
@@ -395,7 +395,7 @@ const styles = StyleSheet.create({
 		marginLeft:20,
    },
   	func:{
-		height:60,
+		height:45,
 		flexDirection:"row",
 		alignItems :"center",
 		width:ScreenWidth,
