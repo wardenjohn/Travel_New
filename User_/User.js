@@ -288,7 +288,7 @@ class User extends Component { //<Props>
 								<View style={{ left: 0 }}>
 									<TouchableOpacity
 										style={[styles.func, { paddingLeft: 0, paddingRight: 0 }]}
-										onPress={() => alert("张永德/赵博宇/李盛兰 Copyright © 2018 BUCT Computer Science and Engineering")}
+										onPress={() => alert("张永德/刘海涛/刘陆航 Copyright © 2018 BUCT Computer Science and Engineering")}
 									>
 										<View style={{ width: ScreenWidth / 2, flexDirection: "row", }}>
 											<View style={{ marginLeft: 20 }}>

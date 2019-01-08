@@ -25,6 +25,8 @@ import Util from './../News/Util';
 import Detail from './Detail';
 import User_comment from './comment.js';
 import My_comment from './my_comment.js';
+import Food_Home_list from './../Food/food_home_list';
+
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
 var ScreenHeight = Dimensions.get('window').height;
@@ -40,7 +42,7 @@ class Home_list extends Component {
 			dataSource: ds,
 			keywords: "故宫博物院",
 			statement:global.statement,
-			place:'天津',
+			place:'北京',
 		};
 		
 	}
@@ -87,7 +89,7 @@ class Home_list extends Component {
 				return alert("未查询到相关信息")
 			}
 			//设置下载状态和下载数据源	
-			var ds = new ListView.DataSource({//创建datasource对象
+			var ds = new ListView.DataSource({//创建datasource对象,这里是ListView的是数据源请求
 				rowHasChanged: (oldRow, newRow) => oldRow !== newRow
 			})
 			that.setState({
@@ -106,11 +108,11 @@ class Home_list extends Component {
 				<View style={{ flexDirection: "row", }}>
 					<ImageBackground
 						style={{ width: ScreenWidth, height: ScreenHeight }}
-						source={require('./../Image/user.jpg')}
+						source={require('./../Image/newsback.jpg')}
 					>
 						<View style={{}}>
 							<View style={[{}, { flexDirection: "row", height: ScreenHeight / 10, width: ScreenWidth, }]}>
-								<View style={{ alignItems: 'center', borderWidth: 1, borderRadius: 10, } , {margin: 10,flexDirection:"row",width:ScreenWidth/1.2,}}>
+								<View style={{ alignItems: 'center', borderWidth: 1, borderRadius: 10},{ margin: 10,flexDirection:"row",width:ScreenWidth/1.2,}}>
 									<View style={{height:ScreenHeight/10,width:ScreenWidth/5}}>
 										<Picker
 											selectedValue={this.state.place}
@@ -149,11 +151,6 @@ class Home_list extends Component {
 										}
 										renderSeperator={this._renderSeperator}
 									/>
-									// <FlatList
-									// 	data={this.state.dataSource}
-									// 	renderItem={this._renderItem.bind(this)}
-									// 	keyExtractor = {item => item.id}
-									// />
 									: Util.loading
 							}
 						</View>
@@ -253,6 +250,12 @@ const ModalStack = StackNavigator({
 			headerTitle: '',
 			header:null
 		}
+	},
+	food_home_list:{
+        screen:Food_Home_list,
+        navigationOptions:{
+            headerTitle:'',
+        }
 	},
 });
 export default ModalStack;

@@ -33,7 +33,7 @@ export default class BookItem extends Component {
             <TouchableOpacity style={styles.item} {...this.props}>
                 <ImageBackground
                     style={styles.item}
-                    source={{ uri: book.img_url}}
+                    source={ {uri: book.img_url}}
                 >   
                     <View style={[styles.textContainer,styles.common]}>
                         <Text 

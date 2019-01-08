@@ -111,7 +111,7 @@ class Detail extends Component {
                                     >
                                         <ImageBackground
                                             style={[styles.common, styles.block]}
-                                            source={require('./../Image/bgm_museum1.jpg')}
+                                            source={require('./../Image/view.jpg')}
                                         >
                                             <View style={[styles.common, styles.block, { backgroundColor: "black", opacity: 0.5 }]}>
                                                 <Text style={styles.text}>
@@ -159,7 +159,7 @@ class Detail extends Component {
                                     >
                                         <ImageBackground
                                             style={[styles.common, styles.block]}
-                                            source={require('./../Image/bgm_usr.jpg')}
+                                            source={require('./../Image/discuss.jpg')}
                                         >
                                             <View style={[styles.common, styles.block, { backgroundColor: "black", opacity: 0.5 }]}>
                                                 <Text style={styles.text}>  

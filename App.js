@@ -13,6 +13,8 @@ import TabNavigator from 'react-native-tab-navigator';
 import User from './User_/User';
 import Museum_Home_list from './Museum/home_list';
 import News_Home_list from './News/home_list';
+import Food_Home_list from './Food/food_home_list';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -73,6 +75,20 @@ export default class App extends Component {
               
           />
           </TabNavigator.Item>  
+          
+          <TabNavigator.Item
+                  title="食物"
+                  selected={this.state.tab==='食物'}
+                  onPress={()=>{
+                    this.setState({tab:'食物'})
+                  }}
+                  renderIcon={()=><Image
+                      style={{width:40,height:this.state.Height/2}} 
+                      source={require('./Image/food.png')}></Image>}
+        >
+          <Food_Home_list/>
+        </TabNavigator.Item>
+
 
           <TabNavigator.Item  
               title="新闻消息"  
@@ -84,10 +100,7 @@ export default class App extends Component {
                     style={{width:35,height:this.state.Height/2}}  
                     source={require('./Image/news.png')}></Image>}
           >  
-          <News_Home_list
-            
-
-          />
+          <News_Home_list/>
           </TabNavigator.Item>
 
 
