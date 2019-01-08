@@ -1,7 +1,9 @@
 # Travel
 This is a travel app which you can search some view to play using React Native 
 
-This is a Trael App demo written by Yongde Zhang(Warden John)/Boyu Zhao/Shenglan Li
+This is a Trael App demo written by Yongde Zhang(Warden John)/Boyu Zhao(Original Writer)/Shenglan Li(Original Writer)
+For a new version of this app we added some new function in it.
+A new Group of our member is Yongde Zhang(Warden John)/Luhang Liu (New Writer)/Haitao Liu(New Writer)
 
 This app is build in React Native as font-end/Django as back-end/Scrapy framework for websipder
 
