@@ -25,7 +25,9 @@ import Food_Items from './food_items';
 import Food_Detail from './food_detail';
 import food_information from './food_infor'
 import Collect from '../Museum/Collection.js';
+import Food_Comment from './food_discuss'
 import Food_Information from './food_infor';
+import Food_WriteComment from './food_write_command'
 
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
@@ -236,10 +238,17 @@ const ModalStack = StackNavigator({
 		}
 	},
 	food_disscus:{
-		screen:Collect,
+		screen:Food_Comment,
 		navigationOptions:{
 			headerTitle:'',
 		}
-	}
+	},
+	my_comment:{
+		screen: Food_WriteComment,
+		navigationOptions: {
+			headerTitle: '',
+			header:null
+		}
+	},
 });
 export default ModalStack;

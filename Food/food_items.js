@@ -23,6 +23,7 @@ export default class FoodItem extends Component {
                 'http://img.hb.aicdn.com/070119e36ac0390f2878cbc57cdb9fec508921ff1111d-WLwiqK_fw658',
                 'http://img.hb.aicdn.com/6e8eba9b25f08b3bd7957ad390031357f297ffab19910-qspBG6_fw658',
                 'http://img.hb.aicdn.com/b2f584032e3bc70098ab857782be2eb03f32a8609025-S8sYPX_fw658',
+                'https://img.meituan.net/msmerchant/b40b59e937c98295eb00ef148f80c49d38952.jpg',
             ],
         }
 
@@ -33,14 +34,14 @@ export default class FoodItem extends Component {
             <TouchableOpacity style={styles.item} {...this.props}>
                 <ImageBackground
                     style={styles.item}
-                    source={ {uri: food.img_url}}
+                    source={{uri:food.shop_img_url}}
                 >   
                     <View style={[styles.textContainer,styles.common]}>
                         <Text 
                             numberOfLine={1}
                             style={{ fontSize: 18, color:"#FAFAD2",}}
                         >
-                            {food.name}
+                            {food.shop_name}
                         </Text>
                     </View>
                 </ImageBackground>
@@ -54,7 +55,8 @@ export default class FoodItem extends Component {
 var styles = StyleSheet.create({
     item: {
         flexDirection: "row",
-        height:ScreenHeight/4 ,
+        height:ScreenHeight /4,
+        width : ScreenWidth,
         justifyContent: "center",
         alignItems: "center",
         //width:ScreenWidth/2,

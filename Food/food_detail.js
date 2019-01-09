@@ -121,11 +121,11 @@ class Food_Detail extends Component {
                                     >
                                         <ImageBackground
                                             style={[styles.common, styles.block]}
-                                            source={require('./../Image/bgm_museum1.jpg')}
+                                            source={require('./../Image/canteen.jpg')}
                                         >
                                             <View style={[styles.common, styles.block, { backgroundColor: "black", opacity: 0.5 }]}>
                                                 <Text style={styles.text}>
-                                                    景点介绍
+                                                    餐馆介绍
                                                 </Text>
                                             </View>
                                         </ImageBackground>
@@ -141,7 +141,7 @@ class Food_Detail extends Component {
                                         >
                                             <View style={[styles.common, styles.block, { backgroundColor: "black", opacity: 0.5 }]}>
                                                 <Text style={styles.text}>
-                                                    活动
+                                                    餐厅活动
                                                 </Text>
                                             </View>
                                         </ImageBackground>  
@@ -154,11 +154,11 @@ class Food_Detail extends Component {
                                     >
                                         <ImageBackground
                                             style={[styles.common, styles.block]}
-                                            source={require('./../Image/bgm_usr.jpg')}
+                                            source={require('./../Image/command.jpg')}
                                         >
                                             <View style={[styles.common, styles.block, { backgroundColor: "black", opacity: 0.5 }]}>
                                                 <Text style={styles.text}>  
-                                                    用户区
+                                                    餐馆评价
                                                 </Text>
                                             </View>
                                         </ImageBackground>
