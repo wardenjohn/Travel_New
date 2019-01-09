@@ -24,12 +24,17 @@ def getnews(request):
 def getnewsbyID(request,nid):
 	if request.method == 'GET':
 		unit=news.objects.filter(id=nid)
+		print type(unit)
 		data=serializer(unit,output_type='json')
 		return HttpResponse(data,content_type="application/json")
 
 
 def getnewsByKey(request,key):
 	if request.method == 'GET':
-		list=news.objects.filter(title__contains=key)
+		print(key)
+		if key != '':
+			list=news.objects.filter(title__contains=key)
+		else:
+			list=news.objects.all()		
 		data=serializer(list,output_type='json')
 		return HttpResponse(data,content_type="application/json")

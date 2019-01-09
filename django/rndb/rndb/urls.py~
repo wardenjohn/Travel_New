@@ -34,5 +34,5 @@ urlpatterns=patterns('',
 			url(r'^getscore/id(.+)/$','mark.views.score'),
 			url(r'^getnews/keyword=(.+)/$','turenews.views.getnewsByKey'),
 			url(r'^push/pushDiary/$','diary.views.pushDiary'),
-			url(r'^get/uid=(.+)/$','diary.views.getDiary')
+			url(r'^getDiary/uid=(.+)/$','diary.views.getDiary')
 )

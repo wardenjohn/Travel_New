@@ -1,5 +1,6 @@
 #coding:utf-8
 from django.shortcuts import render
+
 import json
 from django.shortcuts import redirect
 from django.shortcuts import render,render_to_response
@@ -8,33 +9,25 @@ from django.forms import ModelForm
 from django.contrib import auth
 from django.contrib.auth.models import User
 
-from turenews.models import news
+from foodshop.models import foodshop
 from django.views.decorators.csrf import csrf_exempt
 from django.core.serializers import serialize,deserialize
 from django.db.models.query import QuerySet
 from dss.Serializer import serializer
 # Create your views here.
 
-def getnews(request):
+def getfoodshop(request,shop):
 	if request.method == 'GET':
-		list=news.objects.all()
-		data=serializer(list,output_type='json')
-		return HttpResponse(data,content_type="application/json")
- 
-def getnewsbyID(request,nid):
-	if request.method == 'GET':
-		unit=news.objects.filter(id=nid)
-		print unit['content']
-		data=serializer(unit,output_type='json')
-		return HttpResponse(data,content_type="application/json")
+		print(shop)
+		print("getting food shop")
+		list = foodshop.objects.filter(location__contains=shop)
+		data=serializer(list,output_type = 'json')
+		return HttpResponse(data,content_type = "application/json")
 
-
-def getnewsByKey(request,key):
+def getbyID(request,fid):
 	if request.method == 'GET':
-		print(key)
-		if key != '':
-			list=news.objects.filter(title__contains=key)
-		else:
-			list=news.objects.all()		
+		print(fid)
+		list=foodshop.objects.filter(id=fid)
+		print(list)
 		data=serializer(list,output_type='json')
 		return HttpResponse(data,content_type="application/json")

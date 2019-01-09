@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*','192.168.1.108','10.2.102.146']
 
 
 # Application definition
@@ -42,7 +42,10 @@ INSTALLED_APPS = (
 	'userdb',
 	'turenews',
 	'mark',
-	'diary',	
+	'diary',
+	'food_information',
+	'foodshop',
+	'foodshop_estimate',	
 )
 
 MIDDLEWARE_CLASSES = (
