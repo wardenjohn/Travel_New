@@ -16,7 +16,7 @@ import{
 import StarScore from './../Museum/star';
 import { StackNavigator } from 'react-navigation';
 import Little_star from './../Museum/liitle_star';
-import Show from './../Museum/show_comment';
+import Show from './show_comment';
 import './../globalcontent.js'
 
 var Dimensions = require('Dimensions');
@@ -46,7 +46,7 @@ export default class Food_Comment extends Component {
         this.props.navigation.navigate('my_comment', {
             username:global.username,
             id:params.data.id,
-            name_museum:params.data.name,
+            shop_name:params.data.shop_name,
         });
     }
     render(){
@@ -70,6 +70,7 @@ export default class Food_Comment extends Component {
                             <Text style={{ fontSize: 15, }}>
                                 {this.state.data.people}人
                             </Text>
+                            
                             <TouchableOpacity
                                 style={{marginLeft: 5,}}
                             >
@@ -100,7 +101,7 @@ export default class Food_Comment extends Component {
                                     <Text>
                                         味道评分:
                                     </Text>
-                                    <Little_star value={this.state.data.avgplay}/>
+                                    <Little_star value={this.state.data.avgtaste}/>
                                 </View>
                                 <View style={{ flexDirection: 'row', height: (150 - 150 / 2.5) / 3, width: ScreenWidth * 22 / 36 - 60,   alignItems: "center",}}>
                                     <Text>
@@ -136,7 +137,7 @@ export default class Food_Comment extends Component {
         let formData = new FormData();
         // formData.append("user_id", 7);
         //let url = "http://39.106.168.133:8080/api/getstar/" + s;
-        let url = global.getfetch.url + `getscore/id${s}`;
+        let url = global.getfetch.url + `getscore/foodshop/id${s}`;
         fetch(url, {
             method: 'GET',
         }

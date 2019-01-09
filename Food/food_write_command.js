@@ -181,6 +181,7 @@ export default class Food_Comment extends Component {
                         textAlignVertical='top'
                         style={{width:ScreenWidth}}
                     />
+                    
                 </View>
                 <View style={{flexDirection: 'row-reverse',}}>
                     <TouchableOpacity
@@ -213,14 +214,14 @@ export default class Food_Comment extends Component {
             //alert(params.id);
             formData.append("userid", global.id);
             formData.append("foodshop_id", params.id);
-            formData.append("foodshop_name",params.name_museum);
+            formData.append("foodshop_name",params.shop_name);
             formData.append("loginname",global.username);
             formData.append("markContent", this.state.texts);
             formData.append("envirScore",this.state.Score0);
             formData.append("serveScore",this.state.Score1);
             formData.append("tasteScore",this.state.Score2);
-
-            let url = global.getfetch.url + 'user/writebyUser/';
+            
+            let url = global.getfetch.url + 'foodshop_estimate/writebyUser/';
             
             fetch(url, {
                     method: 'POST',

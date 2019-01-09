@@ -23,7 +23,7 @@ import Util from './../News/Util';
 // import News_Item from './../Museum/Museum_Item';
 import Food_Items from './food_items';
 import Food_Detail from './food_detail';
-import food_information from './food_infor'
+//import food_information from './food_infor'
 import Collect from '../Museum/Collection.js';
 import Food_Comment from './food_discuss'
 import Food_Information from './food_infor';

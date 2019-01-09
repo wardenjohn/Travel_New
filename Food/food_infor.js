@@ -30,7 +30,7 @@ export default class Food_Information extends Component {
         this.state = {
             show: false,
             dataSource: ds,
-            keywords: "故宫博物院",
+            keywords: "",
         };
     }
     render() {
@@ -40,7 +40,7 @@ export default class Food_Information extends Component {
             <ScrollView style={styles.container}>
                 <View>
                     <View style={styles.titleback}>
-                        <Text style={styles.titlescenic}>{params.data.name}</Text>
+                        <Text style={styles.titlescenic}>{params.data.shop_name}</Text>
                     </View>
                     <View>
                         <Text style={styles.title}>美食信息</Text>

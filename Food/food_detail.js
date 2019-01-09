@@ -36,7 +36,7 @@ class Food_Detail extends Component {
             rowHasChanged: (oldRow, newRow) => oldRow !== newRow
         });
         this.state = {
-            fookData: null,
+            foodData: null,
             scenicID:null,
             name:global.username,
         };
@@ -44,7 +44,7 @@ class Food_Detail extends Component {
     getData() {
         var that = this;
         const { params } = this.props.navigation.state;
-        var url = global.getfetch.url + `getscenic/id${params.scenicID}/`;
+        var url = global.getfetch.url + `getfoodshop/id${params.scenicID}/`;
         let ops={
             method:"get",
         }
@@ -53,8 +53,8 @@ class Food_Detail extends Component {
             return response.json()
         })
         .then((responseData) =>{
-            this.setState({fookData:responseData})
-            //alert(this.state.fookData[0].opentime)
+            this.setState({foodData:responseData})
+            //alert(this.state.foodDat[0].opentime)
         })
         .catch((error)=>{
             alert(error)
@@ -65,28 +65,29 @@ class Food_Detail extends Component {
     }
     _introduction(){
         this.props.navigation.navigate('food_information', {
-            data: this.state.fookData[0],
+            data: this.state.foodData[0],
         });
     }
     _gets(){
         //alert("展览");
         this.props.navigation.navigate('food_recommandish', {
-            data: this.state.fookData[0],
+            data: this.state.foodData[0],
         });
     }
     _news(){
         this.props.navigation.navigate('news', {
-            data: this.state.fookData[0],
+            data: this.state.foodData[0],
         });
     }
     _user(){
         // if(global.statement == false)
         //     alert("请登录!")
         // else{
-            //alert(this.state.fookData[0].id)
+            //alert(this.state.foodDat[0].id)
             this.props.navigation.navigate('food_disscus', {
-                data: this.state.fookData[0],
+                data: this.state.foodData[0],
             });
+            
         // }
     }
     render() {
@@ -94,7 +95,7 @@ class Food_Detail extends Component {
         return (
             <ScrollView style={styles.container}>
                 {
-                    this.state.fookData ?
+                    this.state.foodData?
                         <View >
                             <View style={{ flexDirection: "row", width: ScreenWidth, height: ScreenHeight / 12, borderBottomWidth: 0.5, }}>
                                 <View style={[styles.common, { width: ScreenWidth / 5, height: ScreenHeight / 12 }]}>
@@ -110,7 +111,7 @@ class Food_Detail extends Component {
                                 </View>
                                 <View style={[styles.common, { width: ScreenWidth * 3 / 5, height: ScreenHeight / 12 }]}>
                                     <Text style={{ fontSize: 20, color: "black" }}>
-                                        {this.state.fookData.name}
+                                        {this.state.foodData.shop_name}
                                     </Text>
                                 </View>
                             </View>
