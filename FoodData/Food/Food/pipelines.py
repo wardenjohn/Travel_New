@@ -27,10 +27,16 @@ class FoodPipeline(object):
         self.cursor = self.connect.cursor()
  
     def process_item(self, item, spider):
-        insert_sql = "INSERT INTO basic(Iid, Name, Picture, Location) VALUES (%s, %s, %s, %s)"
-        self.cursor.execute(insert_sql, (
-        item['Iid'], item['Name'], item['Picture'], item['Location']))
-        self.connect.commit()
+        if item['ChooseID']==1:
+            insert_sql = "INSERT INTO basic(Iid, Name, Picture, Location) VALUES (%s, %s, %s, %s)"
+            self.cursor.execute(insert_sql, (
+            item['Iid'], item['Name'], item['Picture'], item['Location']))
+            self.connect.commit()
+        else:
+            insert_sql = "INSERT INTO information(Name, Expense, Location, Telephone, Time, Speciality, SpeName) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            self.cursor.execute(insert_sql, (
+            item['Name'], item['Expense'], item['Location'], item['Telephone'], item['Time'], item['Speciality'], item['SpeName']))
+            self.connect.commit()
         
     def close_spider(self, spider):
         self.cursor.close()

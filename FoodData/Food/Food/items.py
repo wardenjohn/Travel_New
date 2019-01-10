@@ -9,13 +9,15 @@ import scrapy
 
 #基础页面表
 class BasicItem(scrapy.Item):
-	Iid = scrapy.Field()			  #ID号
-	Name = scrapy.Field()             #店名
-	Picture = scrapy.Field()          #店铺图片(URL链接)
-	Location = scrapy.Field()         #城市
+    ChooseID = scrapy.Field()
+    Iid = scrapy.Field()			  #ID号
+    Name = scrapy.Field()             #店名
+    Picture = scrapy.Field()          #店铺图片(URL链接)
+    Location = scrapy.Field()         #城市
 
 #基本信息表
 class InformationItem(scrapy.Item):
+    ChooseID = scrapy.Field()
     Name = scrapy.Field()             #店名
     Expense = scrapy.Field()          #人均消费
     Location = scrapy.Field()         #地理位置
