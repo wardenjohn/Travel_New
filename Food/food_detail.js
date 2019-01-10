@@ -60,10 +60,14 @@ class Food_Detail extends Component {
             alert(error)
         })
     }
+
+    
+
     _back() {
         this.props.navigation.goBack();
     }
     _introduction(){
+        //this.get_information()
         this.props.navigation.navigate('food_information', {
             data: this.state.foodData[0],
         });
@@ -138,7 +142,7 @@ class Food_Detail extends Component {
                                     >
                                         <ImageBackground
                                             style={[styles.common, styles.block]}
-                                            source={require('./../Image/bgm_exhibit1.jpg')}
+                                            source={require('./../Image/activity.jpg')}
                                         >
                                             <View style={[styles.common, styles.block, { backgroundColor: "black", opacity: 0.5 }]}>
                                                 <Text style={styles.text}>
