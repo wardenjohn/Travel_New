@@ -22,6 +22,7 @@ var ScreenWidth = Dimensions.get('window').width;
 var ScreenHeight = Dimensions.get('window').height;
 
 export default class Food_Information extends Component {
+
     constructor(props) {
         super(props);
         var ds = new ListView.DataSource({
@@ -31,27 +32,82 @@ export default class Food_Information extends Component {
             show: false,
             dataSource: ds,
             keywords: "",
+            foodInfo:null,
         };
+        //this.get_information()
     }
+
+
+    get_information(){
+        var that = this;
+        const { params } = this.props.navigation.state;
+        var url = global.getfetch.url + `getfoodshop/information_name${params.data.shop_name}/`;
+        let ops={
+            method:"get",
+        }
+        fetch(url,ops)
+        .then((response)=>{
+            return response.json()
+        })
+        .then((responseData) =>{
+            this.setState({
+                foodInfo:responseData,
+                show : responseData,
+            })
+            //alert(this.state.show[0].shop_name)
+            //alert(this.state.foodDat[0].opentime)
+        })
+        .catch((error)=>{
+            alert(error)
+        })
+        //alert(this.state.foodInfo[0]);
+    }
+
+
     render() {
         const { params } = this.props.navigation.state;
         // const { navigate } = this.props.navigation;
+        //this.get_information()
         return (
+
             <ScrollView style={styles.container}>
-                <View>
+            {   this.state.foodInfo ?
+                    <View>
                     <View style={styles.titleback}>
-                        <Text style={styles.titlescenic}>{params.data.shop_name}</Text>
+                        <Text style={styles.titlescenic}>{this.state.show[0].shop_name}</Text>
                     </View>
                     <View>
-                        <Text style={styles.title}>美食信息</Text>
-                        <Text style={styles.text}>暂无</Text>
+                        <Text style={styles.title}>【地址】</Text>
+                        <Text style={styles.location}>{this.state.show[0].location}</Text>
                     </View>
                     
                     <View style={{ height: 55 }}>
+                        <Text style={styles.title}>【人均消费】</Text>
+                        <Text>    {this.state.show[0].per_expense}</Text>
+                    </View>
+
+                    <View>
+                        <Text style={styles.title}>【营业时间】</Text>
+                        <Text>{this.state.show[0].opentime}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.title}>【推荐菜】</Text>
+                        <Text>{this.state.show[0].dish_name}</Text>
+                        <Image 
+                            style={{width:200,height:200}}
+                            source={{uri : this.state.show[0].dish_pic_url}}>
+                        </Image>
                     </View>
                 </View>
+                :Util.loading
+
+            }
             </ScrollView>
         );
+    }
+
+    componentDidMount(){
+        this.get_information()
     }
 }
 var styles = StyleSheet.create({
@@ -78,11 +134,14 @@ var styles = StyleSheet.create({
         fontWeight: "bold"
     },
     title: {
-        fontSize: 16,
+        fontSize: 20,
         marginTop: 10,
         marginLeft: 10,
         marginBottom: 10,
         fontWeight: "bold"
+    },
+    location:{
+        fontSize:15,
     },
     text: {
         marginLeft: 10,
