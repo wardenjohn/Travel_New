@@ -1,3 +1,4 @@
+//注册的跳转
 import React, { Component } from 'react';
 import {
     Platform,
@@ -71,12 +72,12 @@ export default class Login extends Component {
         <View style={{flexDirection:"row",}}>
             <ImageBackground
               style={{width:ScreenWidth,height:ScreenHeight}}
-              source={require('./../Image/bgm.jpg')}
+              source={require('./../Image/timg.jpg')}
             >
               <View >
                 <View style={{height:ScreenHeight/4,width:ScreenWidth,justifyContent : "center",alignItems :"center",}}>
                   <Text style={styles.text_}>
-                    欢迎加入Travel
+                    HEllo
                   </Text>
                 </View>
                 <Search

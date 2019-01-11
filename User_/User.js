@@ -1,3 +1,4 @@
+//用户界面
 import React, { Component } from 'react';
 import {
 	Platform,

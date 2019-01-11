@@ -1,3 +1,4 @@
+//登录界面
 import React, { Component } from 'react';
 import {
     Platform,
@@ -16,10 +17,10 @@ import Search from './login_text';
 import Register from './register.js';
 import User from './User.js';
 import Icon_Back from './Icon_Back.js';
-var Dimensions = require('Dimensions');
+var Dimensions = require('Dimensions');//抓取屏幕尺寸
 var ScreenWidth = Dimensions.get('window').width;
 var ScreenHeight = Dimensions.get('window').height;
-export default class Login extends Component {
+export default class Login extends Component {//继承父类
     constructor(props) {
       super(props);
       this.state = {
@@ -31,18 +32,18 @@ export default class Login extends Component {
       };
     }
     _getData(){
-        let formData = new FormData();  
-        formData.append("loginname",this.state.name);  
-        formData.append("password",this.state.pwd);  
-        let url = global.getfetch.url ;
+        let formData = new FormData();       //formData是提交登录表单的
+        formData.append("loginname",this.state.name); //获取输入的用户名 
+        formData.append("password",this.state.pwd);  //获取输入的密码
+        let url = global.getfetch.url ;//提交信息的网址
         url += `user/getuser/`;
-        fetch(url , {  
+        fetch(url , {         //提交
            method: 'POST',  
            headers: {},  
            body: formData,
            }  
         )
-        .then((response) => {  
+        .then((response) => {  //处理异常
             if (response.ok) {  
                 return response.json();  
         }})
@@ -69,17 +70,22 @@ export default class Login extends Component {
         
     }
     render(){
-      const  {navigate,state,goBack,} = this.props.navigation;
+      const  {navigate,state,goBack,} = this.props.navigation;//navigate实现跳转
       return(
+        // <ScrollView
+        //   contentContainerStyle={{ flex: 1}}
+        //   keybordDismissMode="on-drag"
+        //   keybordShouldPersistTaps={false}
+        //   scrollEnabled={false}>
         <View style={{flexDirection:"row",}}>
             <ImageBackground
               style={{width:ScreenWidth,height:ScreenHeight}}
-              source={require('./../Image/bgm.jpg')}
+              source={require('./../Image/timg.jpg')}
             >
                 <View>
                     <View style={{height:ScreenHeight/4,width:ScreenWidth,justifyContent : "center",alignItems :"center",}}>
                     <Text style={styles.text_}>
-                        欢迎加入Travel
+                        Hello
                     </Text>
                     </View>
                     <Search  
