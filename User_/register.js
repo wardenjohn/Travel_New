@@ -77,7 +77,7 @@ export default class Login extends Component {
               <View >
                 <View style={{height:ScreenHeight/4,width:ScreenWidth,justifyContent : "center",alignItems :"center",}}>
                   <Text style={styles.text_}>
-                    HEllo
+                    欢迎加入“😂咯咯咯😂”
                   </Text>
                 </View>
                 <Search

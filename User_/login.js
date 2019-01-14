@@ -24,8 +24,8 @@ export default class Login extends Component {//继承父类
     constructor(props) {
       super(props);
       this.state = {
-          name:"",
-          pwd:"",
+          name:null,
+          pwd:null,
           data:{
 
           }
@@ -33,28 +33,32 @@ export default class Login extends Component {//继承父类
     }
     _getData(){
         let formData = new FormData();       //formData是提交登录表单的
-        formData.append("loginname",this.state.name); //获取输入的用户名 
-        formData.append("password",this.state.pwd);  //获取输入的密码
-        let url = global.getfetch.url ;//提交信息的网址
-        url += `user/getuser/`;
-        fetch(url , {         //提交
-           method: 'POST',  
-           headers: {},  
-           body: formData,
-           }  
-        )
-        .then((response) => {  //处理异常
-            if (response.ok) {  
-                return response.json();  
-        }})
-        .then((json) => {  
-          this.setState({data:json});
-        })
-        .catch((error) => {  
-         console.error(error);  
-         
-        }); 
-        
+        if(this.state.name != null && this.state.pwd != null){
+            formData.append("loginname",this.state.name); //获取输入的用户名 
+            formData.append("password",this.state.pwd);  //获取输入的密码
+            let url = global.getfetch.url ;//提交信息的网址
+            url += `user/getuser/`;
+            fetch(url , {         //提交
+            method: 'POST',  
+            headers: {},  
+            body: formData,
+            }  
+            )
+            .then((response) => {  //处理异常
+                if (response.ok) {  
+                    return response.json();  
+            }})
+            .then((json) => {  
+            this.setState({data:json});
+            })
+            .catch((error) => {  
+            console.error(error);  
+            
+            }); 
+        }
+        else{
+            alert(" 请输入用户名&密码")
+        }
     }
     back = (state,goBack)=>{ //把属性传递过来，然后进行使用
         this._getData();
@@ -85,7 +89,7 @@ export default class Login extends Component {//继承父类
                 <View>
                     <View style={{height:ScreenHeight/4,width:ScreenWidth,justifyContent : "center",alignItems :"center",}}>
                     <Text style={styles.text_}>
-                        Hello
+                        欢迎登陆
                     </Text>
                     </View>
                     <Search  
