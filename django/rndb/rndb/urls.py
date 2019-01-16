@@ -11,6 +11,7 @@ from turenews import views
 from mark import views
 from diary import views
 from foodshop_estimate import views
+from food_information import views
 #urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'rndb.views.home', name='home'),
@@ -41,5 +42,6 @@ urlpatterns=patterns('',
 			url(r'^foodshop_estimate/writebyUser/$','foodshop_estimate.views.user_post'),
 			url(r'^getfoodshop/id(.+)/$','foodshop.views.getbyID'),	
 			url(r'^mark/getfoodshop_byid/id=(.+)/$','foodshop_estimate.views.get_mark_byID'),
-			url(r'getscore/foodshop/id(.+)/$','foodshop_estimate.views.score')
+			url(r'^getscore/foodshop/id(.+)/$','foodshop_estimate.views.score'),
+			url(r'^getfoodshop/information_name(.+)/$','food_information.views.getinfo')
 )

@@ -128,7 +128,7 @@ class User extends Component { //<Props>
 							</View>							
 						</View>
 						<View style={[styles.seperator,{ height: 2}]}></View>
-						<View style={[styles.middle, { backgroundColor:"#32cd32"}]}>
+						<View style={[styles.middle, { backgroundColor:"#2319dc"}]}>
 							<View style={[styles.person_name,{justifyContent : "center",alignItems :"center",}]}>
 								<Image
 									style={{width:ScreenWidth/7,height:ScreenHeight/10}}

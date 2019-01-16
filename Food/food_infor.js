@@ -17,6 +17,7 @@ import { StackNavigator } from 'react-navigation';
 import Comments from './../Comments/show_comment.js';
 import Icon from './../User_/Icon_Back.js';
 import Util from './../News/Util.js';
+import AlertSelected from '../Personal_page/AlertSelected.js';
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
 var ScreenHeight = Dimensions.get('window').height;
@@ -83,7 +84,7 @@ export default class Food_Information extends Component {
                     
                     <View style={{ height: 55 }}>
                         <Text style={styles.title}>【人均消费】</Text>
-                        <Text>    {this.state.show[0].per_expense}</Text>
+                        <Text>    ¥{this.state.show[0].per_expense}</Text>
                     </View>
 
                     <View>
@@ -92,7 +93,7 @@ export default class Food_Information extends Component {
                     </View>
                     <View>
                         <Text style={styles.title}>【推荐菜】</Text>
-                        <Text>{this.state.show[0].dish_name}</Text>
+                            <Text>{this.state.show[0].dish_name}</Text>
                         <Image 
                             style={{width:200,height:200}}
                             source={{uri : this.state.show[0].dish_pic_url}}>
@@ -138,6 +139,7 @@ var styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 10,
         marginBottom: 10,
+        alignItems: "center",
         fontWeight: "bold"
     },
     location:{
